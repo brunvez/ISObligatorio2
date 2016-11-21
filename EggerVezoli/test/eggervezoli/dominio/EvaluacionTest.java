@@ -5,38 +5,48 @@
  */
 package eggervezoli.dominio;
 
+import java.util.Date;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
  * @author Bruno
  */
 public class EvaluacionTest {
-    
+
+    private Evaluacion instance;
+
+    @Before
+    public void setUp() {
+        try {
+            instance = new Evaluacion(2, "Muy rico", new Usuario("usuario", "john@doe.com"), new Date());
+        } catch (InvalidCalificationException ex) {
+            System.err.println("No se pudo crear la instancia");
+        }
+    }
+
     @Test
-    public void testSetCalificacionCambiaLaCalificacion() throws InvalidCalificationException{
+    public void testSetCalificacionCambiaLaCalificacion() throws InvalidCalificationException {
         int calificacion = 3;
-        Evaluacion instance = new Evaluacion(2, null, null, null);
-       
+
         instance.setCalificacion(calificacion);
-        
+
         assertEquals(calificacion, instance.getCalificacion());
     }
-    
+
     @Test(expected = InvalidCalificationException.class)
-    public void testSetCalificacionLanzaExcepcionSiLaCalificacionEsMenorQue0() throws InvalidCalificationException{
+    public void testSetCalificacionLanzaExcepcionSiLaCalificacionEsMenorQue0() throws InvalidCalificationException {
         int calificacion = 0;
-        Evaluacion instance = new Evaluacion(2, null, null, null);
-       
+
         instance.setCalificacion(calificacion);
     }
-    
-     @Test(expected = InvalidCalificationException.class)
-    public void testSetCalificacionLanzaExcepcionSiLaCalificacionEsMenorQue5() throws InvalidCalificationException{
+
+    @Test(expected = InvalidCalificationException.class)
+    public void testSetCalificacionLanzaExcepcionSiLaCalificacionEsMenorQue5() throws InvalidCalificationException {
         int calificacion = 6;
-        Evaluacion instance = new Evaluacion(2, null, null, null);
-       
+
         instance.setCalificacion(calificacion);
     }
 }
