@@ -14,10 +14,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public VentanaPrincipal(Sistema sistema) {
         initComponents();
-        this.setSize(800, 600);
+        this.setSize(900, 700);
         this.setResizable(false);
-        MenuPrincipal menu = new MenuPrincipal(panelCartas, sistema);
-        panelCartas.add(menu);
+        this.sistema = sistema;
         jPanel1.updateUI();
     }
 
