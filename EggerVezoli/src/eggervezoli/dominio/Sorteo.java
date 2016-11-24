@@ -14,16 +14,17 @@ public class Sorteo {
 
     /**
      * Crea un nuevo sorteo con los datos dados
-     * 
+     *
      * @param premio la descripcion del premio
      * @param numeroDeGanadores la cantidad de ganadores maxima para el premio
      * @param fechaInicio la fecha de inicio del sorteo
      * @param fechaFin la fecha de finalizacion del sorteo
-     * @throws InvalidDateRangeException  si la fecha de inicio es mayor que la del fin
-    */
+     * @throws InvalidDateRangeException si la fecha de inicio es mayor que la
+     * del fin
+     */
     public Sorteo(String premio, int numeroDeGanadores, Date fechaInicio, Date fechaFin) throws InvalidDateRangeException {
-        if(fechaInicio.compareTo(fechaFin) > 0){
-            throw  new InvalidDateRangeException();
+        if (fechaInicio.compareTo(fechaFin) > 0) {
+            throw new InvalidDateRangeException();
         }
         this.premio = premio;
         this.numeroDeGanadores = numeroDeGanadores;
@@ -56,15 +57,16 @@ public class Sorteo {
     }
 
     public ArrayList<Usuario> sortear(ArrayList<Usuario> participantes) throws NotEnoughParticipantsException {
-        if(participantes.size() < numeroDeGanadores){
+        if (participantes.size() < numeroDeGanadores) {
             throw new NotEnoughParticipantsException();
         }
         ArrayList<Usuario> ganadores = new ArrayList<>();
         Random rand = new Random();
-        for (int i = 0; i < numeroDeGanadores; i++) {
+        while(ganadores.size() < numeroDeGanadores) {
             Usuario ganador = participantes.get(rand.nextInt(participantes.size()));
-            ganadores.add(ganador);
-            participantes.remove(ganador);
+            if (!ganadores.contains(ganador)) {
+                ganadores.add(ganador);
+            }
         }
         return ganadores;
     }
