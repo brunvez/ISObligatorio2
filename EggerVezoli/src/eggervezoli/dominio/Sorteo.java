@@ -11,7 +11,6 @@ public class Sorteo {
     private int numeroDeGanadores;
     private Date fechaIncio;
     private Date fechaFin;
-    private Sorteo sorteoseleccionado;
 
     /**
      * Crea un nuevo sorteo con los datos dados
@@ -57,13 +56,15 @@ public class Sorteo {
     }
 
     public ArrayList<Usuario> sortear(ArrayList<Usuario> participantes) throws NotEnoughParticipantsException {
-        if(participantes.isEmpty()){
+        if(participantes.size() < numeroDeGanadores){
             throw new NotEnoughParticipantsException();
         }
         ArrayList<Usuario> ganadores = new ArrayList<>();
         Random rand = new Random();
         for (int i = 0; i < numeroDeGanadores; i++) {
-            ganadores.add(participantes.get(rand.nextInt(participantes.size())));
+            Usuario ganador = participantes.get(rand.nextInt(participantes.size()));
+            ganadores.add(ganador);
+            participantes.remove(ganador);
         }
         return ganadores;
     }
