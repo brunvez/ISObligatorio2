@@ -1,6 +1,7 @@
 package eggervezoli.dominio;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Sistema {
 
@@ -30,8 +31,12 @@ public class Sistema {
         return usuarios;
     }
 
-    public void addSorteo(Sorteo sorteo) {
+    public void agregarSorteo(Sorteo sorteo) {
         sorteos.add(sorteo);
+    }
+
+    public boolean eliminarSorteo(Sorteo sorteo) {
+        return sorteos.remove(sorteo);
     }
 
     public ArrayList<Sorteo> getSorteos() {

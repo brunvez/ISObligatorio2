@@ -1,15 +1,18 @@
 package eggervezoli.interfaz;
 
-
+import eggervezoli.dominio.Evaluacion;
 import eggervezoli.dominio.Restaurante;
 import eggervezoli.dominio.Sistema;
+import eggervezoli.dominio.Usuario;
+import java.util.Date;
 import javax.swing.JPanel;
 
 public class EvaluarRestaurante extends javax.swing.JPanel {
 
     private Sistema sistema;
     private JPanel contenedor;
-    
+    int calificacion = 0;
+
     public EvaluarRestaurante(JPanel padre, Sistema sistema) {
         initComponents();
         this.sistema = sistema;
@@ -25,11 +28,9 @@ public class EvaluarRestaurante extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         unaEstrella = new javax.swing.JCheckBox();
         dosEstrellas = new javax.swing.JCheckBox();
@@ -38,21 +39,24 @@ public class EvaluarRestaurante extends javax.swing.JPanel {
         cincoEstrellas = new javax.swing.JCheckBox();
         guardar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
-        usuarioEvaluacion = new javax.swing.JTextField();
+        nombreUsuario = new javax.swing.JTextField();
         comentariosEvaluacion = new javax.swing.JTextField();
-        fechaEvaluacion = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        mailUsuario = new javax.swing.JTextField();
+        jLabelError = new javax.swing.JLabel();
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Evaluar Restaurante");
 
-        jLabel2.setText("Usuario:");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Nombre");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Comentarios:");
 
-        jLabel4.setText("Fecha:");
-
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("Calificación:");
 
-        buttonGroup1.add(unaEstrella);
         unaEstrella.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         unaEstrella.setDebugGraphicsOptions(javax.swing.DebugGraphics.FLASH_OPTION);
         unaEstrella.setDisabledIcon(new javax.swing.ImageIcon("C:\\Users\\valen\\OneDrive\\Pictures\\ImagenesObligatorioIS\\Untitled22.png")); // NOI18N
@@ -64,7 +68,6 @@ public class EvaluarRestaurante extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(dosEstrellas);
         dosEstrellas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         dosEstrellas.setDebugGraphicsOptions(javax.swing.DebugGraphics.FLASH_OPTION);
         dosEstrellas.setDisabledIcon(new javax.swing.ImageIcon("C:\\Users\\valen\\OneDrive\\Pictures\\ImagenesObligatorioIS\\Untitled22.png")); // NOI18N
@@ -76,7 +79,6 @@ public class EvaluarRestaurante extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(tresEstrellas);
         tresEstrellas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tresEstrellas.setDebugGraphicsOptions(javax.swing.DebugGraphics.FLASH_OPTION);
         tresEstrellas.setDisabledIcon(new javax.swing.ImageIcon("C:\\Users\\valen\\OneDrive\\Pictures\\ImagenesObligatorioIS\\Untitled22.png")); // NOI18N
@@ -88,7 +90,6 @@ public class EvaluarRestaurante extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(cuatroEstrellas);
         cuatroEstrellas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cuatroEstrellas.setDebugGraphicsOptions(javax.swing.DebugGraphics.FLASH_OPTION);
         cuatroEstrellas.setDisabledIcon(new javax.swing.ImageIcon("C:\\Users\\valen\\OneDrive\\Pictures\\ImagenesObligatorioIS\\Untitled22.png")); // NOI18N
@@ -100,11 +101,16 @@ public class EvaluarRestaurante extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(cincoEstrellas);
         cincoEstrellas.setDisabledIcon(new javax.swing.ImageIcon("C:\\Users\\valen\\OneDrive\\Pictures\\ImagenesObligatorioIS\\Untitled22.png")); // NOI18N
         cincoEstrellas.setIcon(new javax.swing.ImageIcon("C:\\Users\\valen\\OneDrive\\Pictures\\ImagenesObligatorioIS\\Untitled22.png")); // NOI18N
         cincoEstrellas.setSelectedIcon(new javax.swing.ImageIcon("C:\\Users\\valen\\OneDrive\\Pictures\\ImagenesObligatorioIS\\Untitled.png")); // NOI18N
+        cincoEstrellas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cincoEstrellasActionPerformed(evt);
+            }
+        });
 
+        guardar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,167 +118,207 @@ public class EvaluarRestaurante extends javax.swing.JPanel {
             }
         });
 
+        cancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cancelar.setText("Cancelar");
-
-        usuarioEvaluacion.addActionListener(new java.awt.event.ActionListener() {
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioEvaluacionActionPerformed(evt);
+                cancelarActionPerformed(evt);
             }
         });
 
-        fechaEvaluacion.addActionListener(new java.awt.event.ActionListener() {
+        nombreUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nombreUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechaEvaluacionActionPerformed(evt);
+                nombreUsuarioActionPerformed(evt);
             }
         });
+
+        comentariosEvaluacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel6.setText("Mail:");
+
+        mailUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mailUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mailUsuarioActionPerformed(evt);
+            }
+        });
+
+        jLabelError.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelError.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(59, 59, 59)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(101, 101, 101)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(comentariosEvaluacion)
-                                    .addComponent(usuarioEvaluacion)
-                                    .addComponent(fechaEvaluacion, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))))
+                                    .addComponent(mailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comentariosEvaluacion, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelError, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(unaEstrella)
+                                .addGap(78, 78, 78)
+                                .addComponent(dosEstrellas)
+                                .addGap(78, 78, 78)
+                                .addComponent(tresEstrellas)
+                                .addGap(89, 89, 89)
+                                .addComponent(cuatroEstrellas)
+                                .addGap(90, 90, 90)
+                                .addComponent(cincoEstrellas)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(unaEstrella)
-                .addGap(18, 18, 18)
-                .addComponent(dosEstrellas)
-                .addGap(26, 26, 26)
-                .addComponent(tresEstrellas)
-                .addGap(29, 29, 29)
-                .addComponent(cuatroEstrellas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(cincoEstrellas)
-                .addGap(216, 216, 216))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelar)
-                .addGap(18, 18, 18)
-                .addComponent(guardar)
-                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comentariosEvaluacion, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tresEstrellas)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(usuarioEvaluacion, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(comentariosEvaluacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(fechaEvaluacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(unaEstrella)
-                            .addComponent(dosEstrellas)
-                            .addComponent(cuatroEstrellas)
-                            .addComponent(cincoEstrellas))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                    .addComponent(dosEstrellas)
+                    .addComponent(cuatroEstrellas)
+                    .addComponent(cincoEstrellas)
+                    .addComponent(unaEstrella))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelError, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardar)
-                    .addComponent(cancelar))
-                .addContainerGap())
+                    .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void cuatroEstrellasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuatroEstrellasActionPerformed
-        if(cincoEstrellas.isSelected()){
-            cuatroEstrellas.getSelectedIcon();
-                    
-        }
+        calificacion = 4;
+        cincoEstrellas.setSelected(false);
+        tresEstrellas.setSelected(true);
+        dosEstrellas.setSelected(true);
+        unaEstrella.setSelected(true);
     }//GEN-LAST:event_cuatroEstrellasActionPerformed
 
     private void unaEstrellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unaEstrellaActionPerformed
-        if(dosEstrellas.isSelected()){
-            unaEstrella.getSelectedIcon();
-        }
+        calificacion = 1;
+        cincoEstrellas.setSelected(false);
+        cuatroEstrellas.setSelected(false);
+        tresEstrellas.setSelected(false);
+        dosEstrellas.setSelected(false);
     }//GEN-LAST:event_unaEstrellaActionPerformed
 
     private void dosEstrellasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosEstrellasActionPerformed
-        if(tresEstrellas.isSelected()){
-            dosEstrellas.getSelectedIcon();
-                    
-        }
+        calificacion = 2;
+        cincoEstrellas.setSelected(false);
+        cuatroEstrellas.setSelected(false);
+        tresEstrellas.setSelected(false);
+        unaEstrella.setSelected(true);
     }//GEN-LAST:event_dosEstrellasActionPerformed
 
     private void tresEstrellasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tresEstrellasActionPerformed
-        if(cuatroEstrellas.isSelected()){
-            tresEstrellas.getSelectedIcon();
-        }
+        calificacion = 3;
+        cincoEstrellas.setSelected(false);
+        cuatroEstrellas.setSelected(false);
+        dosEstrellas.setSelected(true);
+        unaEstrella.setSelected(true);
     }//GEN-LAST:event_tresEstrellasActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+
         Restaurante resto = sistema.getRestaurante();
-        String usuario, comentario, fecha, calificacion;
-        usuario = usuarioEvaluacion.getText();
+        Usuario usuario = new Usuario(nombreUsuario.getText(), mailUsuario.getText());
+        String comentario;
         comentario = comentariosEvaluacion.getText();
-        fecha = fechaEvaluacion.getText();
-        calificacion = cantidadDeEstrellas();
-        //Evaluacion evaluacion = new Evaluacion(calificacion, comentario, usuario, fecha);
-        //si vamos a pedir solo usuario por nombre hay q crear metodo para buscar usuario
-        //resto.addEvaluacion(evaluacion);
-        
+        Date fecha = new Date();
+        try {
+            Evaluacion evaluacion = new Evaluacion(calificacion, comentario, usuario, fecha);
+            resto.addEvaluacion(evaluacion);
+             jLabelError.setText("");
+        } catch (Exception e) {
+            jLabelError.setText("Tiene que calificar el restaurante");
+        }
+
     }//GEN-LAST:event_guardarActionPerformed
 
-    private void fechaEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaEvaluacionActionPerformed
+    private void nombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fechaEvaluacionActionPerformed
+    }//GEN-LAST:event_nombreUsuarioActionPerformed
 
-    private void usuarioEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEvaluacionActionPerformed
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        contenedor.removeAll();
+        contenedor.add(new MenuPrincipal(contenedor, sistema));
+        contenedor.updateUI();
+    }//GEN-LAST:event_cancelarActionPerformed
+
+    private void mailUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioEvaluacionActionPerformed
+    }//GEN-LAST:event_mailUsuarioActionPerformed
+
+    private void cincoEstrellasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cincoEstrellasActionPerformed
+        calificacion = 5;
+        cuatroEstrellas.setSelected(true);
+        tresEstrellas.setSelected(true);
+        dosEstrellas.setSelected(true);
+        unaEstrella.setSelected(true);
+    }//GEN-LAST:event_cincoEstrellasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelar;
     private javax.swing.JCheckBox cincoEstrellas;
     private javax.swing.JTextField comentariosEvaluacion;
     private javax.swing.JCheckBox cuatroEstrellas;
     private javax.swing.JCheckBox dosEstrellas;
-    private javax.swing.JTextField fechaEvaluacion;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelError;
+    private javax.swing.JTextField mailUsuario;
+    private javax.swing.JTextField nombreUsuario;
     private javax.swing.JCheckBox tresEstrellas;
     private javax.swing.JCheckBox unaEstrella;
-    private javax.swing.JTextField usuarioEvaluacion;
     // End of variables declaration//GEN-END:variables
 
-    private String cantidadDeEstrellas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

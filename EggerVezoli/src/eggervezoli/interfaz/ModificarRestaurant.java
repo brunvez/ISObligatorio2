@@ -140,7 +140,9 @@ public class ModificarRestaurant extends javax.swing.JPanel {
     }//GEN-LAST:event_modificarTipoDeComidaActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        
+        contenedor.removeAll();
+        contenedor.add(new MenuPrincipal(contenedor, sistema));
+        contenedor.updateUI();
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
