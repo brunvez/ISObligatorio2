@@ -17,6 +17,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.setSize(900, 700);
         this.setResizable(false);
         this.sistema = sistema;
+        EvaluarRestaurante evaluarRestaurante = new EvaluarRestaurante(panelCartas, sistema);
+        panelCartas.removeAll();
+        panelCartas.add(evaluarRestaurante);
         jPanel1.updateUI();
     }
 
