@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Restaurante.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;EggerVezoli&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">eggervezoli.dominio</a> &gt; <span class="el_source">Restaurante.java</span></div><h1>Restaurante.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package eggervezoli.dominio;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+public class Restaurante {
+
+    private String nombre;
+    private String direccion;
+    private String horario;
+    private String tipoDeComida;
+    private ArrayList&lt;Evaluacion&gt; evaluaciones;
+
+<span class="fc" id="L21">    public Restaurante(String nombre, String direccion, String horario, String tipoDeComida) {</span>
+<span class="fc" id="L22">        this.nombre = nombre;</span>
+<span class="fc" id="L23">        this.direccion = direccion;</span>
+<span class="fc" id="L24">        this.horario = horario;</span>
+<span class="fc" id="L25">        this.tipoDeComida = tipoDeComida;</span>
+<span class="fc" id="L26">        this.evaluaciones = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * Retorna una lista con todos los participantes que realizaron una
+     * evaluacion en en rango de fechas dado. Si un usuario realiza mas de una
+     * evaluacion estara mas de una vez en la lista
+     *
+     * @param inicio del rango de fecha
+     * @param fin del rango de fecha
+     * @return la lista de los usuarios que han ralizado evaluaciones
+     * @throws InvalidDateRangeException cuando el inicio es menor que el fin
+     */
+    public ArrayList&lt;Usuario&gt; usuariosQueEvaluaron(Date inicio, Date fin) throws InvalidDateRangeException {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (inicio.compareTo(fin) &gt; 0) {</span>
+<span class="fc" id="L41">            throw new InvalidDateRangeException();</span>
+        }
+<span class="fc" id="L43">        ArrayList&lt;Usuario&gt; evaluaron = evaluaciones.stream().</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">                filter((evaluacion) -&gt; (evaluacion.getUsuario() != null</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                        &amp;&amp; evaluacion.getFecha().compareTo(inicio) &gt;= 0</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">                        &amp;&amp; evaluacion.getFecha().compareTo(fin) &lt;= 0)).</span>
+<span class="fc" id="L47">                map((evaluacion) -&gt; (evaluacion.getUsuario())).</span>
+<span class="fc" id="L48">                collect(toArrayList());</span>
+<span class="fc" id="L49">        return evaluaron;</span>
+    }
+
+    private static &lt;T&gt; Collector&lt;T, ?, ArrayList&lt;T&gt;&gt; toArrayList() {
+<span class="fc" id="L53">        return Collectors.toCollection(ArrayList::new);</span>
+    }
+
+    public String getNombre() {
+<span class="nc" id="L57">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L61">        this.nombre = nombre;</span>
+<span class="nc" id="L62">    }</span>
+
+    public String getDireccion() {
+<span class="nc" id="L65">        return direccion;</span>
+    }
+
+    public void setDireccion(String direccion) {
+<span class="nc" id="L69">        this.direccion = direccion;</span>
+<span class="nc" id="L70">    }</span>
+
+    public String getHorario() {
+<span class="nc" id="L73">        return horario;</span>
+    }
+
+    public void setHorario(String horario) {
+<span class="nc" id="L77">        this.horario = horario;</span>
+<span class="nc" id="L78">    }</span>
+
+    public String getTipoDeComida() {
+<span class="nc" id="L81">        return tipoDeComida;</span>
+    }
+
+    public void setTipoDeComida(String tipoDeComida) {
+<span class="nc" id="L85">        this.tipoDeComida = tipoDeComida;</span>
+<span class="nc" id="L86">    }</span>
+
+    public ArrayList&lt;Evaluacion&gt; getEvaluaciones() {
+<span class="nc" id="L89">        return evaluaciones;</span>
+    }
+
+    public void setEvaluacion(ArrayList&lt;Evaluacion&gt; evaluaciones) {
+<span class="nc" id="L93">        this.evaluaciones = evaluaciones;</span>
+<span class="nc" id="L94">    }</span>
+
+    public void addEvaluacion(Evaluacion evaluacion) {
+<span class="fc" id="L97">        this.evaluaciones.add(evaluacion);</span>
+<span class="fc" id="L98">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

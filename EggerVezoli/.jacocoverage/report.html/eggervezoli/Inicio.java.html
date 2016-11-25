@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Inicio.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;EggerVezoli&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">eggervezoli</a> &gt; <span class="el_source">Inicio.java</span></div><h1>Inicio.java</h1><pre class="source lang-java linenums">package eggervezoli;
+
+import eggervezoli.dominio.Sistema;
+import eggervezoli.interfaz.VentanaPrincipal;
+import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
+import java.text.ParseException;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+<span class="nc" id="L10">public class Inicio {</span>
+
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        try {
+<span class="nc" id="L18">            UIManager.setLookAndFeel(new SyntheticaPlainLookAndFeel());</span>
+<span class="nc" id="L19">        } catch (ParseException | UnsupportedLookAndFeelException e) {</span>
+<span class="nc" id="L20">            System.err.println(&quot;Hubo un error al cargar la interfaz&quot;);</span>
+<span class="nc" id="L21">        }</span>
+<span class="nc" id="L22">        Sistema sistema = new Sistema();</span>
+        // datos para probar la aplicacion
+<span class="nc" id="L24">        sistema.getRestaurante().setNombre(&quot;El club de la papa frita&quot;);</span>
+<span class="nc" id="L25">        sistema.getRestaurante().setDireccion(&quot;Av Brasil equina Brito Del Pino&quot;);</span>
+<span class="nc" id="L26">        sistema.getRestaurante().setHorario(&quot;De 11:00 a.m. a 3:30 p.m. y de 7:00 p.m. a 11:30 p.m.&quot;);</span>
+<span class="nc" id="L27">        sistema.getRestaurante().setTipoDeComida(&quot;Minutas y papas fritas&quot;);</span>
+        
+<span class="nc" id="L29">        VentanaPrincipal ventana = new VentanaPrincipal(sistema);</span>
+<span class="nc" id="L30">        ventana.setVisible(true);</span>
+<span class="nc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
