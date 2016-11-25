@@ -85,7 +85,7 @@ public class Restaurante {
         this.tipoDeComida = tipoDeComida;
     }
 
-    public ArrayList<Evaluacion> getEvaluacion() {
+    public ArrayList<Evaluacion> getEvaluaciones() {
         return evaluaciones;
     }
 

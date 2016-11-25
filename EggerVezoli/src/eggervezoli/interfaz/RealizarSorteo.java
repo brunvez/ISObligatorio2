@@ -15,8 +15,6 @@ import eggervezoli.dominio.Usuario;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,16 +29,6 @@ public class RealizarSorteo extends javax.swing.JPanel {
         initComponents();
         this.sistema = sistema;
         this.padre = padre;
-        try {
-            sistema.agregarSorteo(new Sorteo("p1", 2, new Date(), new Date()));
-            sistema.agregarSorteo(new Sorteo("p2", 2, new Date(), new Date()));
-            sistema.agregarSorteo(new Sorteo("p3", 2, new Date(), new Date()));
-            sistema.agregarSorteo(new Sorteo("p4", 2, new Date(), new Date()));
-            Evaluacion ev = new Evaluacion(3, "na", new Usuario("a", "b"), new Date());
-            sistema.getRestaurante().addEvaluacion(ev);
-        } catch (InvalidDateRangeException | InvalidCalificationException ex) {
-            Logger.getLogger(RealizarSorteo.class.getName()).log(Level.SEVERE, null, ex);
-        }
         resetearDatos();
     }
 
@@ -72,6 +60,7 @@ public class RealizarSorteo extends javax.swing.JPanel {
         jLabelFechaFin.setText("");
         jLabelFechaInicio.setText("");
         jLabelNumeroDeGanadores.setText("");
+        jTextAreaDescripcionPrecio.setText("");
     }
 
     private void mostrarGanadores(ArrayList<Usuario> ganadores) {

@@ -1,6 +1,4 @@
-
 package eggervezoli.interfaz;
-
 
 import eggervezoli.dominio.Restaurante;
 import eggervezoli.dominio.Sistema;
@@ -10,11 +8,15 @@ public class ModificarRestaurant extends javax.swing.JPanel {
 
     private Sistema sistema;
     private JPanel contenedor;
-    
-    public ModificarRestaurant(JPanel padre ,Sistema sistema) {
+
+    public ModificarRestaurant(JPanel padre, Sistema sistema) {
         initComponents();
         this.sistema = sistema;
         this.contenedor = padre;
+        modificarDireccion.setText(sistema.getRestaurante().getDireccion());
+        modificarHorario.setText(sistema.getRestaurante().getHorario());
+        modificarNombre.setText(sistema.getRestaurante().getNombre());
+        modificarTipoDeComida.setText(sistema.getRestaurante().getTipoDeComida());
     }
 
     @SuppressWarnings("unchecked")
@@ -32,35 +34,57 @@ public class ModificarRestaurant extends javax.swing.JPanel {
         modificarTipoDeComida = new javax.swing.JTextField();
         guardar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        jLabelError = new javax.swing.JLabel();
+
+        setLayout(null);
 
         ventanaModificarRestaurante.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         ventanaModificarRestaurante.setText("Modificar Restaurante");
+        add(ventanaModificarRestaurante);
+        ventanaModificarRestaurante.setBounds(20, 10, 1448, 65);
 
         nombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         nombre.setText("Nombre:");
         nombre.setPreferredSize(new java.awt.Dimension(150, 48));
+        add(nombre);
+        nombre.setBounds(110, 100, 256, 48);
 
         direccion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         direccion.setText("Dirección:");
+        add(direccion);
+        direccion.setBounds(110, 180, 256, 48);
 
         horario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         horario.setText("Horario:");
+        add(horario);
+        horario.setBounds(110, 270, 256, 48);
 
         TipoDeComida.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         TipoDeComida.setText("Tipo de comida:");
+        add(TipoDeComida);
+        TipoDeComida.setBounds(110, 350, 256, 48);
 
         modificarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modificarNombreActionPerformed(evt);
             }
         });
+        add(modificarNombre);
+        modificarNombre.setBounds(360, 100, 350, 48);
+        add(modificarDireccion);
+        modificarDireccion.setBounds(360, 180, 350, 48);
+        add(modificarHorario);
+        modificarHorario.setBounds(360, 270, 350, 48);
 
         modificarTipoDeComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modificarTipoDeComidaActionPerformed(evt);
             }
         });
+        add(modificarTipoDeComida);
+        modificarTipoDeComida.setBounds(360, 350, 350, 48);
 
+        guardar.setBackground(new java.awt.Color(97, 216, 114));
         guardar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +92,10 @@ public class ModificarRestaurant extends javax.swing.JPanel {
                 guardarActionPerformed(evt);
             }
         });
+        add(guardar);
+        guardar.setBounds(360, 470, 150, 50);
 
+        cancelar.setBackground(new java.awt.Color(255, 90, 62));
         cancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,63 +103,12 @@ public class ModificarRestaurant extends javax.swing.JPanel {
                 cancelarActionPerformed(evt);
             }
         });
+        add(cancelar);
+        cancelar.setBounds(560, 470, 150, 50);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(ventanaModificarRestaurante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(horario, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TipoDeComida, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(126, 126, 126)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(modificarTipoDeComida, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificarDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(507, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(ventanaModificarRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificarDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(horario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificarHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TipoDeComida, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificarTipoDeComida, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
-        );
+        jLabelError.setForeground(new java.awt.Color(255, 0, 0));
+        add(jLabelError);
+        jLabelError.setBounds(330, 420, 420, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void modificarTipoDeComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarTipoDeComidaActionPerformed
@@ -152,11 +128,14 @@ public class ModificarRestaurant extends javax.swing.JPanel {
         direccion = modificarDireccion.getText();
         horario = modificarHorario.getText();
         tipoComida = modificarTipoDeComida.getText();
-        
-        resto.setNombre(nombre);
-        resto.setDireccion(direccion);
-        resto.setHorario(horario);
-        resto.setTipoDeComida(tipoComida);
+        if (!nombre.isEmpty() && !direccion.isEmpty() && !horario.isEmpty() && !tipoComida.isEmpty()) {
+            resto.setNombre(nombre);
+            resto.setDireccion(direccion);
+            resto.setHorario(horario);
+            resto.setTipoDeComida(tipoComida);
+        }else{
+            jLabelError.setText("Ninguno de los campos puede ser vacío");
+        }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void modificarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarNombreActionPerformed
@@ -170,6 +149,7 @@ public class ModificarRestaurant extends javax.swing.JPanel {
     private javax.swing.JLabel direccion;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel horario;
+    private javax.swing.JLabel jLabelError;
     private javax.swing.JTextField modificarDireccion;
     private javax.swing.JTextField modificarHorario;
     private javax.swing.JTextField modificarNombre;

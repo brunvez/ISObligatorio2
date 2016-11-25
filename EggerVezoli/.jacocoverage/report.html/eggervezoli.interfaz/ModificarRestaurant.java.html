@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ModificarRestaurant.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;EggerVezoli&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">eggervezoli.interfaz</a> &gt; <span class="el_source">ModificarRestaurant.java</span></div><h1>ModificarRestaurant.java</h1><pre class="source lang-java linenums">package eggervezoli.interfaz;
+
+import eggervezoli.dominio.Restaurante;
+import eggervezoli.dominio.Sistema;
+import javax.swing.JPanel;
+
+public class ModificarRestaurant extends javax.swing.JPanel {
+
+    private Sistema sistema;
+    private JPanel contenedor;
+
+<span class="nc" id="L12">    public ModificarRestaurant(JPanel padre, Sistema sistema) {</span>
+<span class="nc" id="L13">        initComponents();</span>
+<span class="nc" id="L14">        this.sistema = sistema;</span>
+<span class="nc" id="L15">        this.contenedor = padre;</span>
+<span class="nc" id="L16">        modificarDireccion.setText(sistema.getRestaurante().getDireccion());</span>
+<span class="nc" id="L17">        modificarHorario.setText(sistema.getRestaurante().getHorario());</span>
+<span class="nc" id="L18">        modificarNombre.setText(sistema.getRestaurante().getNombre());</span>
+<span class="nc" id="L19">        modificarTipoDeComida.setText(sistema.getRestaurante().getTipoDeComida());</span>
+<span class="nc" id="L20">    }</span>
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="nc" id="L26">        ventanaModificarRestaurante = new javax.swing.JLabel();</span>
+<span class="nc" id="L27">        nombre = new javax.swing.JLabel();</span>
+<span class="nc" id="L28">        direccion = new javax.swing.JLabel();</span>
+<span class="nc" id="L29">        horario = new javax.swing.JLabel();</span>
+<span class="nc" id="L30">        TipoDeComida = new javax.swing.JLabel();</span>
+<span class="nc" id="L31">        modificarNombre = new javax.swing.JTextField();</span>
+<span class="nc" id="L32">        modificarDireccion = new javax.swing.JTextField();</span>
+<span class="nc" id="L33">        modificarHorario = new javax.swing.JTextField();</span>
+<span class="nc" id="L34">        modificarTipoDeComida = new javax.swing.JTextField();</span>
+<span class="nc" id="L35">        guardar = new javax.swing.JButton();</span>
+<span class="nc" id="L36">        cancelar = new javax.swing.JButton();</span>
+<span class="nc" id="L37">        jLabelError = new javax.swing.JLabel();</span>
+
+<span class="nc" id="L39">        setLayout(null);</span>
+
+<span class="nc" id="L41">        ventanaModificarRestaurante.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 36)); // NOI18N</span>
+<span class="nc" id="L42">        ventanaModificarRestaurante.setText(&quot;Modificar Restaurante&quot;);</span>
+<span class="nc" id="L43">        add(ventanaModificarRestaurante);</span>
+<span class="nc" id="L44">        ventanaModificarRestaurante.setBounds(20, 10, 1448, 65);</span>
+
+<span class="nc" id="L46">        nombre.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 24)); // NOI18N</span>
+<span class="nc" id="L47">        nombre.setText(&quot;Nombre:&quot;);</span>
+<span class="nc" id="L48">        nombre.setPreferredSize(new java.awt.Dimension(150, 48));</span>
+<span class="nc" id="L49">        add(nombre);</span>
+<span class="nc" id="L50">        nombre.setBounds(110, 100, 256, 48);</span>
+
+<span class="nc" id="L52">        direccion.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 24)); // NOI18N</span>
+<span class="nc" id="L53">        direccion.setText(&quot;Dirección:&quot;);</span>
+<span class="nc" id="L54">        add(direccion);</span>
+<span class="nc" id="L55">        direccion.setBounds(110, 180, 256, 48);</span>
+
+<span class="nc" id="L57">        horario.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 24)); // NOI18N</span>
+<span class="nc" id="L58">        horario.setText(&quot;Horario:&quot;);</span>
+<span class="nc" id="L59">        add(horario);</span>
+<span class="nc" id="L60">        horario.setBounds(110, 270, 256, 48);</span>
+
+<span class="nc" id="L62">        TipoDeComida.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 24)); // NOI18N</span>
+<span class="nc" id="L63">        TipoDeComida.setText(&quot;Tipo de comida:&quot;);</span>
+<span class="nc" id="L64">        add(TipoDeComida);</span>
+<span class="nc" id="L65">        TipoDeComida.setBounds(110, 350, 256, 48);</span>
+
+<span class="nc" id="L67">        modificarNombre.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L69">                modificarNombreActionPerformed(evt);</span>
+<span class="nc" id="L70">            }</span>
+        });
+<span class="nc" id="L72">        add(modificarNombre);</span>
+<span class="nc" id="L73">        modificarNombre.setBounds(360, 100, 350, 48);</span>
+<span class="nc" id="L74">        add(modificarDireccion);</span>
+<span class="nc" id="L75">        modificarDireccion.setBounds(360, 180, 350, 48);</span>
+<span class="nc" id="L76">        add(modificarHorario);</span>
+<span class="nc" id="L77">        modificarHorario.setBounds(360, 270, 350, 48);</span>
+
+<span class="nc" id="L79">        modificarTipoDeComida.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L81">                modificarTipoDeComidaActionPerformed(evt);</span>
+<span class="nc" id="L82">            }</span>
+        });
+<span class="nc" id="L84">        add(modificarTipoDeComida);</span>
+<span class="nc" id="L85">        modificarTipoDeComida.setBounds(360, 350, 350, 48);</span>
+
+<span class="nc" id="L87">        guardar.setBackground(new java.awt.Color(97, 216, 114));</span>
+<span class="nc" id="L88">        guardar.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L89">        guardar.setText(&quot;Guardar&quot;);</span>
+<span class="nc" id="L90">        guardar.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L92">                guardarActionPerformed(evt);</span>
+<span class="nc" id="L93">            }</span>
+        });
+<span class="nc" id="L95">        add(guardar);</span>
+<span class="nc" id="L96">        guardar.setBounds(360, 470, 150, 50);</span>
+
+<span class="nc" id="L98">        cancelar.setBackground(new java.awt.Color(255, 90, 62));</span>
+<span class="nc" id="L99">        cancelar.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L100">        cancelar.setText(&quot;Cancelar&quot;);</span>
+<span class="nc" id="L101">        cancelar.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L103">                cancelarActionPerformed(evt);</span>
+<span class="nc" id="L104">            }</span>
+        });
+<span class="nc" id="L106">        add(cancelar);</span>
+<span class="nc" id="L107">        cancelar.setBounds(560, 470, 150, 50);</span>
+
+<span class="nc" id="L109">        jLabelError.setForeground(new java.awt.Color(255, 0, 0));</span>
+<span class="nc" id="L110">        add(jLabelError);</span>
+<span class="nc" id="L111">        jLabelError.setBounds(330, 420, 420, 30);</span>
+<span class="nc" id="L112">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    private void modificarTipoDeComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarTipoDeComidaActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L116">    }//GEN-LAST:event_modificarTipoDeComidaActionPerformed</span>
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+<span class="nc" id="L119">        contenedor.removeAll();</span>
+<span class="nc" id="L120">        contenedor.add(new MenuPrincipal(contenedor, sistema));</span>
+<span class="nc" id="L121">        contenedor.updateUI();</span>
+<span class="nc" id="L122">    }//GEN-LAST:event_cancelarActionPerformed</span>
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+<span class="nc" id="L125">        Restaurante resto = sistema.getRestaurante();</span>
+        String nombre, direccion, horario, tipoComida;
+<span class="nc" id="L127">        nombre = modificarNombre.getText();</span>
+<span class="nc" id="L128">        direccion = modificarDireccion.getText();</span>
+<span class="nc" id="L129">        horario = modificarHorario.getText();</span>
+<span class="nc" id="L130">        tipoComida = modificarTipoDeComida.getText();</span>
+<span class="nc bnc" id="L131" title="All 8 branches missed.">        if (!nombre.isEmpty() &amp;&amp; !direccion.isEmpty() &amp;&amp; !horario.isEmpty() &amp;&amp; !tipoComida.isEmpty()) {</span>
+<span class="nc" id="L132">            resto.setNombre(nombre);</span>
+<span class="nc" id="L133">            resto.setDireccion(direccion);</span>
+<span class="nc" id="L134">            resto.setHorario(horario);</span>
+<span class="nc" id="L135">            resto.setTipoDeComida(tipoComida);</span>
+        }else{
+<span class="nc" id="L137">            jLabelError.setText(&quot;Ninguno de los campos puede ser vacío&quot;);</span>
+        }
+<span class="nc" id="L139">    }//GEN-LAST:event_guardarActionPerformed</span>
+
+    private void modificarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarNombreActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L143">    }//GEN-LAST:event_modificarNombreActionPerformed</span>
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TipoDeComida;
+    private javax.swing.JButton cancelar;
+    private javax.swing.JLabel direccion;
+    private javax.swing.JButton guardar;
+    private javax.swing.JLabel horario;
+    private javax.swing.JLabel jLabelError;
+    private javax.swing.JTextField modificarDireccion;
+    private javax.swing.JTextField modificarHorario;
+    private javax.swing.JTextField modificarNombre;
+    private javax.swing.JTextField modificarTipoDeComida;
+    private javax.swing.JLabel nombre;
+    private javax.swing.JLabel ventanaModificarRestaurante;
+    // End of variables declaration//GEN-END:variables
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

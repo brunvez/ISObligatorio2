@@ -20,6 +20,12 @@ public class Inicio {
             System.err.println("Hubo un error al cargar la interfaz");
         }
         Sistema sistema = new Sistema();
+        // datos para probar la aplicacion
+        sistema.getRestaurante().setNombre("El club de la papa frita");
+        sistema.getRestaurante().setDireccion("Av Brasil equina Brito Del Pino");
+        sistema.getRestaurante().setHorario("De 11:00 a.m. a 3:30 p.m. y de 7:00 p.m. a 11:30 p.m.");
+        sistema.getRestaurante().setTipoDeComida("Minutas y papas fritas");
+        
         VentanaPrincipal ventana = new VentanaPrincipal(sistema);
         ventana.setVisible(true);
     }

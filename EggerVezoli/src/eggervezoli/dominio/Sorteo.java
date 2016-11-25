@@ -19,11 +19,11 @@ public class Sorteo {
      * @param numeroDeGanadores la cantidad de ganadores maxima para el premio
      * @param fechaInicio la fecha de inicio del sorteo
      * @param fechaFin la fecha de finalizacion del sorteo
-     * @throws InvalidDateRangeException si la fecha de inicio es mayor que la
-     * del fin
+     * @throws InvalidDateRangeException si la fecha de inicio es mayor o igual 
+     * que la de fin
      */
     public Sorteo(String premio, int numeroDeGanadores, Date fechaInicio, Date fechaFin) throws InvalidDateRangeException {
-        if (fechaInicio.compareTo(fechaFin) > 0) {
+        if (fechaInicio.compareTo(fechaFin) >= 0) {
             throw new InvalidDateRangeException();
         }
         this.premio = premio;

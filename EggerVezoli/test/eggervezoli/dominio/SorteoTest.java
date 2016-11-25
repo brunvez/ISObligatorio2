@@ -12,7 +12,8 @@ public class SorteoTest {
 
     @Before
     public void setUp() throws InvalidDateRangeException {
-        instance = new Sorteo("Un premio", 3, new Date(), new Date());
+        Date manana = new Date(new Date().getTime() + (1000 * 60 * 60 * 24));
+        instance = new Sorteo("Un premio", 3, new Date(), manana);
     }
 
     @Test

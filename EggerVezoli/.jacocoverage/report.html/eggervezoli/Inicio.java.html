@@ -2,16 +2,32 @@
 
 import eggervezoli.dominio.Sistema;
 import eggervezoli.interfaz.VentanaPrincipal;
+import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
+import java.text.ParseException;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
-<span class="nc" id="L6">public class Inicio {</span>
+<span class="nc" id="L10">public class Inicio {</span>
 
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-<span class="nc" id="L12">        Sistema sistema = new Sistema();</span>
-<span class="nc" id="L13">        VentanaPrincipal ventana = new VentanaPrincipal(null);</span>
-<span class="nc" id="L14">        ventana.setVisible(true);</span>
-<span class="nc" id="L15">    }</span>
+        try {
+<span class="nc" id="L18">            UIManager.setLookAndFeel(new SyntheticaPlainLookAndFeel());</span>
+<span class="nc" id="L19">        } catch (ParseException | UnsupportedLookAndFeelException e) {</span>
+<span class="nc" id="L20">            System.err.println(&quot;Hubo un error al cargar la interfaz&quot;);</span>
+<span class="nc" id="L21">        }</span>
+<span class="nc" id="L22">        Sistema sistema = new Sistema();</span>
+        // datos para probar la aplicacion
+<span class="nc" id="L24">        sistema.getRestaurante().setNombre(&quot;El club de la papa frita&quot;);</span>
+<span class="nc" id="L25">        sistema.getRestaurante().setDireccion(&quot;Av Brasil equina Brito Del Pino&quot;);</span>
+<span class="nc" id="L26">        sistema.getRestaurante().setHorario(&quot;De 11:00 a.m. a 3:30 p.m. y de 7:00 p.m. a 11:30 p.m.&quot;);</span>
+<span class="nc" id="L27">        sistema.getRestaurante().setTipoDeComida(&quot;Minutas y papas fritas&quot;);</span>
+        
+<span class="nc" id="L29">        VentanaPrincipal ventana = new VentanaPrincipal(sistema);</span>
+<span class="nc" id="L30">        ventana.setVisible(true);</span>
+<span class="nc" id="L31">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

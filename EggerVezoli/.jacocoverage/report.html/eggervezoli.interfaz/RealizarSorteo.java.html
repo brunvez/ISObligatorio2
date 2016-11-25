@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>RealizarSorteo.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;EggerVezoli&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">eggervezoli.interfaz</a> &gt; <span class="el_source">RealizarSorteo.java</span></div><h1>RealizarSorteo.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package eggervezoli.interfaz;
+
+import eggervezoli.dominio.Evaluacion;
+import eggervezoli.dominio.InvalidCalificationException;
+import eggervezoli.dominio.InvalidDateRangeException;
+import eggervezoli.dominio.NotEnoughParticipantsException;
+import eggervezoli.dominio.Sistema;
+import eggervezoli.dominio.Sorteo;
+import eggervezoli.dominio.Usuario;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class RealizarSorteo extends javax.swing.JPanel {
+
+    private Sistema sistema;
+    private JPanel padre;
+    private Sorteo sorteoSeleccionado;
+
+<span class="nc" id="L28">    public RealizarSorteo(JPanel padre, Sistema sistema) {</span>
+<span class="nc" id="L29">        initComponents();</span>
+<span class="nc" id="L30">        this.sistema = sistema;</span>
+<span class="nc" id="L31">        this.padre = padre;</span>
+<span class="nc" id="L32">        resetearDatos();</span>
+<span class="nc" id="L33">    }</span>
+
+    /**
+     * Da formato d/m/Y a la fecha dada
+     *
+     * @param fecha a dar formato
+     * @return un string con el formato descripto de la fecha
+     */
+    private String darFormatoAFecha(Date fecha) {
+<span class="nc" id="L42">        Calendar calendario = Calendar.getInstance();</span>
+<span class="nc" id="L43">        calendario.setTime(fecha);</span>
+<span class="nc" id="L44">        int dia = calendario.get(Calendar.DAY_OF_MONTH);</span>
+<span class="nc" id="L45">        int mes = calendario.get(Calendar.MONTH);</span>
+<span class="nc" id="L46">        int ano = calendario.get(Calendar.YEAR);</span>
+<span class="nc" id="L47">        return dia + &quot;/&quot; + mes + &quot;/&quot; + ano;</span>
+    }
+
+    private void borrarSorteo() {
+<span class="nc" id="L51">        sistema.eliminarSorteo(sorteoSeleccionado);</span>
+<span class="nc" id="L52">        sorteoSeleccionado = null;</span>
+<span class="nc" id="L53">    }</span>
+
+    /**
+     * Vacia las labels y los textboxes
+     */
+    private void resetearDatos() {
+<span class="nc" id="L59">        jListSorteos.setListData(sistema.getSorteos().toArray());</span>
+<span class="nc" id="L60">        jLabelFechaFin.setText(&quot;&quot;);</span>
+<span class="nc" id="L61">        jLabelFechaInicio.setText(&quot;&quot;);</span>
+<span class="nc" id="L62">        jLabelNumeroDeGanadores.setText(&quot;&quot;);</span>
+<span class="nc" id="L63">        jTextAreaDescripcionPrecio.setText(&quot;&quot;);</span>
+<span class="nc" id="L64">    }</span>
+
+    private void mostrarGanadores(ArrayList&lt;Usuario&gt; ganadores) {
+<span class="nc" id="L67">        JFrame frame = new JFrame();</span>
+<span class="nc" id="L68">        frame.setTitle(&quot;Ganadores del sorteo&quot;);</span>
+<span class="nc" id="L69">        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L70">        MostrarGanadores panelMostrarGanadores = new MostrarGanadores(ganadores);</span>
+<span class="nc" id="L71">        frame.add(panelMostrarGanadores);</span>
+<span class="nc" id="L72">        frame.pack();</span>
+<span class="nc" id="L73">        frame.setVisible(true);</span>
+<span class="nc" id="L74">    }</span>
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="nc" id="L80">        jScrollPane1 = new javax.swing.JScrollPane();</span>
+<span class="nc" id="L81">        jListSorteos = new javax.swing.JList();</span>
+<span class="nc" id="L82">        jLabel1 = new javax.swing.JLabel();</span>
+<span class="nc" id="L83">        jLabel2 = new javax.swing.JLabel();</span>
+<span class="nc" id="L84">        jLabel3 = new javax.swing.JLabel();</span>
+<span class="nc" id="L85">        jLabel4 = new javax.swing.JLabel();</span>
+<span class="nc" id="L86">        jLabel5 = new javax.swing.JLabel();</span>
+<span class="nc" id="L87">        jLabel6 = new javax.swing.JLabel();</span>
+<span class="nc" id="L88">        jScrollPane2 = new javax.swing.JScrollPane();</span>
+<span class="nc" id="L89">        jTextAreaDescripcionPrecio = new javax.swing.JTextArea();</span>
+<span class="nc" id="L90">        jLabelFechaInicio = new javax.swing.JLabel();</span>
+<span class="nc" id="L91">        jLabelFechaFin = new javax.swing.JLabel();</span>
+<span class="nc" id="L92">        jLabelNumeroDeGanadores = new javax.swing.JLabel();</span>
+<span class="nc" id="L93">        jButtonRealizarSorteo = new javax.swing.JButton();</span>
+<span class="nc" id="L94">        jButtonCancelarSorteo = new javax.swing.JButton();</span>
+<span class="nc" id="L95">        jButtonVolver = new javax.swing.JButton();</span>
+
+<span class="nc" id="L97">        setMaximumSize(new java.awt.Dimension(800, 600));</span>
+<span class="nc" id="L98">        setMinimumSize(new java.awt.Dimension(800, 600));</span>
+
+<span class="nc" id="L100">        jListSorteos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {</span>
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+<span class="nc" id="L102">                jListSorteosValueChanged(evt);</span>
+<span class="nc" id="L103">            }</span>
+        });
+<span class="nc" id="L105">        jScrollPane1.setViewportView(jListSorteos);</span>
+
+<span class="nc" id="L107">        jLabel1.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L108">        jLabel1.setText(&quot;Lista de Sorteos&quot;);</span>
+
+<span class="nc" id="L110">        jLabel2.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 48)); // NOI18N</span>
+<span class="nc" id="L111">        jLabel2.setText(&quot;Realizar sorteo&quot;);</span>
+
+<span class="nc" id="L113">        jLabel3.setText(&quot;Fecha inicio:&quot;);</span>
+
+<span class="nc" id="L115">        jLabel4.setText(&quot;Fecha finalización:&quot;);</span>
+
+<span class="nc" id="L117">        jLabel5.setText(&quot;Numero de ganadores:&quot;);</span>
+
+<span class="nc" id="L119">        jLabel6.setText(&quot;Descripción del premio:&quot;);</span>
+
+<span class="nc" id="L121">        jTextAreaDescripcionPrecio.setEditable(false);</span>
+<span class="nc" id="L122">        jTextAreaDescripcionPrecio.setColumns(20);</span>
+<span class="nc" id="L123">        jTextAreaDescripcionPrecio.setRows(5);</span>
+<span class="nc" id="L124">        jTextAreaDescripcionPrecio.setEnabled(false);</span>
+<span class="nc" id="L125">        jScrollPane2.setViewportView(jTextAreaDescripcionPrecio);</span>
+
+<span class="nc" id="L127">        jLabelFechaInicio.setText(&quot;jLabel7&quot;);</span>
+
+<span class="nc" id="L129">        jLabelFechaFin.setText(&quot;jLabel8&quot;);</span>
+<span class="nc" id="L130">        jLabelFechaFin.setMinimumSize(new java.awt.Dimension(0, 0));</span>
+
+<span class="nc" id="L132">        jLabelNumeroDeGanadores.setText(&quot;jLabel9&quot;);</span>
+
+<span class="nc" id="L134">        jButtonRealizarSorteo.setBackground(new java.awt.Color(97, 216, 114));</span>
+<span class="nc" id="L135">        jButtonRealizarSorteo.setForeground(new java.awt.Color(51, 51, 51));</span>
+<span class="nc" id="L136">        jButtonRealizarSorteo.setText(&quot;Realizar sorteo&quot;);</span>
+<span class="nc" id="L137">        jButtonRealizarSorteo.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L139">                jButtonRealizarSorteoActionPerformed(evt);</span>
+<span class="nc" id="L140">            }</span>
+        });
+
+<span class="nc" id="L143">        jButtonCancelarSorteo.setBackground(new java.awt.Color(255, 90, 62));</span>
+<span class="nc" id="L144">        jButtonCancelarSorteo.setForeground(new java.awt.Color(51, 51, 51));</span>
+<span class="nc" id="L145">        jButtonCancelarSorteo.setText(&quot;Cancelar sorteo&quot;);</span>
+<span class="nc" id="L146">        jButtonCancelarSorteo.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L148">                jButtonCancelarSorteoActionPerformed(evt);</span>
+<span class="nc" id="L149">            }</span>
+        });
+
+<span class="nc" id="L152">        jButtonVolver.setText(&quot;Volver&quot;);</span>
+<span class="nc" id="L153">        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L155">                jButtonVolverActionPerformed(evt);</span>
+<span class="nc" id="L156">            }</span>
+        });
+
+<span class="nc" id="L159">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);</span>
+<span class="nc" id="L160">        this.setLayout(layout);</span>
+<span class="nc" id="L161">        layout.setHorizontalGroup(</span>
+<span class="nc" id="L162">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L163">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L164">                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L165">                .addComponent(jLabel1)</span>
+<span class="nc" id="L166">                .addGap(100, 100, 100))</span>
+<span class="nc" id="L167">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L168">                .addGap(229, 229, 229)</span>
+<span class="nc" id="L169">                .addComponent(jLabel2)</span>
+<span class="nc" id="L170">                .addGap(0, 0, Short.MAX_VALUE))</span>
+<span class="nc" id="L171">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
+<span class="nc" id="L172">                .addGap(50, 50, 50)</span>
+<span class="nc" id="L173">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L174">                    .addComponent(jLabel6)</span>
+<span class="nc" id="L175">                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L176">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L177">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L178">                            .addComponent(jLabel3)</span>
+<span class="nc" id="L179">                            .addComponent(jLabel4)</span>
+<span class="nc" id="L180">                            .addComponent(jLabel5))</span>
+<span class="nc" id="L181">                        .addGap(25, 25, 25)</span>
+<span class="nc" id="L182">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L183">                            .addComponent(jLabelFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L184">                            .addComponent(jLabelFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L185">                            .addComponent(jLabelNumeroDeGanadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))</span>
+<span class="nc" id="L186">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L187">                        .addComponent(jButtonRealizarSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L188">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L189">                        .addComponent(jButtonCancelarSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L190">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)</span>
+<span class="nc" id="L191">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L192">                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L193">                    .addComponent(jButtonVolver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L194">                .addGap(75, 75, 75))</span>
+        );
+<span class="nc" id="L196">        layout.setVerticalGroup(</span>
+<span class="nc" id="L197">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L198">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L199">                .addContainerGap()</span>
+<span class="nc" id="L200">                .addComponent(jLabel2)</span>
+<span class="nc" id="L201">                .addGap(50, 50, 50)</span>
+<span class="nc" id="L202">                .addComponent(jLabel1)</span>
+<span class="nc" id="L203">                .addGap(18, 18, 18)</span>
+<span class="nc" id="L204">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L205">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L206">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L207">                            .addComponent(jLabel3)</span>
+<span class="nc" id="L208">                            .addComponent(jLabelFechaInicio))</span>
+<span class="nc" id="L209">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L210">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L211">                            .addComponent(jLabel4)</span>
+<span class="nc" id="L212">                            .addComponent(jLabelFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L213">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L214">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L215">                            .addComponent(jLabel5)</span>
+<span class="nc" id="L216">                            .addComponent(jLabelNumeroDeGanadores))</span>
+<span class="nc" id="L217">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L218">                        .addComponent(jLabel6)</span>
+<span class="nc" id="L219">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L220">                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L221">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)</span>
+<span class="nc" id="L222">                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L223">                            .addComponent(jButtonRealizarSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L224">                            .addComponent(jButtonCancelarSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L225">                            .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L226">                        .addGap(57, 57, 57))</span>
+<span class="nc" id="L227">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L228">                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L229">                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))</span>
+        );
+<span class="nc" id="L231">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    private void jButtonRealizarSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarSorteoActionPerformed
+<span class="nc bnc" id="L234" title="All 2 branches missed.">        if (sorteoSeleccionado != null) {</span>
+<span class="nc" id="L235">            Date fechaInicio = sorteoSeleccionado.getFechaIncio();</span>
+<span class="nc" id="L236">            Date fechaFin = sorteoSeleccionado.getFechaFin();</span>
+            try {
+<span class="nc" id="L238">                ArrayList&lt;Usuario&gt; participantes = sistema.getRestaurante().usuariosQueEvaluaron(fechaInicio, fechaFin);</span>
+<span class="nc" id="L239">                ArrayList&lt;Usuario&gt; ganadores = sorteoSeleccionado.sortear(participantes);</span>
+<span class="nc" id="L240">                mostrarGanadores(ganadores);</span>
+<span class="nc" id="L241">                borrarSorteo();</span>
+<span class="nc" id="L242">                resetearDatos();</span>
+<span class="nc" id="L243">            } catch (NotEnoughParticipantsException ex) {</span>
+<span class="nc" id="L244">                JOptionPane.showMessageDialog(this, &quot;No hay suficientes participantes para realizar el sorteo&quot;);</span>
+<span class="nc" id="L245">            } catch (InvalidDateRangeException ex) {</span>
+<span class="nc" id="L246">                JOptionPane.showMessageDialog(this, &quot;El rango de fechas de este sorteo no es correcto&quot;);</span>
+<span class="nc" id="L247">            }</span>
+        }
+<span class="nc" id="L249">    }//GEN-LAST:event_jButtonRealizarSorteoActionPerformed</span>
+
+    private void jButtonCancelarSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarSorteoActionPerformed
+<span class="nc" id="L252">        int dialogResult = JOptionPane.showConfirmDialog(this, &quot;¿Seguro que desea cancelar este sorteo?&quot;, &quot;Warning&quot;, JOptionPane.YES_NO_OPTION);</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">        if (dialogResult == JOptionPane.YES_OPTION) {</span>
+<span class="nc" id="L254">            borrarSorteo();</span>
+<span class="nc" id="L255">            resetearDatos();</span>
+        }
+<span class="nc" id="L257">    }//GEN-LAST:event_jButtonCancelarSorteoActionPerformed</span>
+
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+<span class="nc" id="L260">        padre.removeAll();</span>
+<span class="nc" id="L261">        padre.add(new MenuPrincipal(padre, sistema));</span>
+<span class="nc" id="L262">        padre.updateUI();</span>
+<span class="nc" id="L263">    }//GEN-LAST:event_jButtonVolverActionPerformed</span>
+
+    private void jListSorteosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSorteosValueChanged
+<span class="nc bnc" id="L266" title="All 2 branches missed.">        if (jListSorteos.getSelectedIndex() != -1) {</span>
+<span class="nc" id="L267">            sorteoSeleccionado = (Sorteo) jListSorteos.getSelectedValue();</span>
+<span class="nc" id="L268">            jLabelFechaInicio.setText(darFormatoAFecha(sorteoSeleccionado.getFechaIncio()));</span>
+<span class="nc" id="L269">            jLabelFechaFin.setText(darFormatoAFecha(sorteoSeleccionado.getFechaFin()));</span>
+<span class="nc" id="L270">            jLabelNumeroDeGanadores.setText(&quot;&quot; + sorteoSeleccionado.getNumeroDeGanadores());</span>
+<span class="nc" id="L271">            jTextAreaDescripcionPrecio.setText(sorteoSeleccionado.getPremio());</span>
+        }
+<span class="nc" id="L273">    }//GEN-LAST:event_jListSorteosValueChanged</span>
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelarSorteo;
+    private javax.swing.JButton jButtonRealizarSorteo;
+    private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelFechaFin;
+    private javax.swing.JLabel jLabelFechaInicio;
+    private javax.swing.JLabel jLabelNumeroDeGanadores;
+    private javax.swing.JList jListSorteos;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextAreaDescripcionPrecio;
+    // End of variables declaration//GEN-END:variables
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

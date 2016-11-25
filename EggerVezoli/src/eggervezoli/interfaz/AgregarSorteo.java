@@ -4,6 +4,7 @@ import eggervezoli.dominio.InvalidDateRangeException;
 import eggervezoli.dominio.Sistema;
 import eggervezoli.dominio.Sorteo;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class AgregarSorteo extends javax.swing.JPanel {
@@ -31,8 +32,8 @@ public class AgregarSorteo extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jSpinnerNumeroDeGanadores = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jLabelError = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(800, 600));
@@ -144,21 +145,21 @@ jLabel5.setText("Numero de ganadores");
 
 jSpinnerNumeroDeGanadores.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
-jButton1.setBackground(new java.awt.Color(97, 216, 114));
-jButton1.setForeground(new java.awt.Color(51, 51, 51));
-jButton1.setText("Guardar");
-jButton1.addActionListener(new java.awt.event.ActionListener() {
+jButtonGuardar.setBackground(new java.awt.Color(97, 216, 114));
+jButtonGuardar.setForeground(new java.awt.Color(51, 51, 51));
+jButtonGuardar.setText("Guardar");
+jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        jButtonGuardarActionPerformed(evt);
     }
     });
 
-    jButton2.setBackground(new java.awt.Color(255, 90, 62));
-    jButton2.setForeground(new java.awt.Color(51, 51, 51));
-    jButton2.setText("Cancelar");
-    jButton2.addActionListener(new java.awt.event.ActionListener() {
+    jButtonCancelar.setBackground(new java.awt.Color(255, 90, 62));
+    jButtonCancelar.setForeground(new java.awt.Color(51, 51, 51));
+    jButtonCancelar.setText("Cancelar");
+    jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton2ActionPerformed(evt);
+            jButtonCancelarActionPerformed(evt);
         }
     });
 
@@ -179,9 +180,9 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,15 +225,15 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
             .addComponent(jLabelError, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(73, Short.MAX_VALUE))
     );
 
     jSpinnerNumeroDeGanadores.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         Date fechaInicio = dateChooserComboInicio.getCurrent().getTime();
         Date fechaFin = dateChooserComboFin.getCurrent().getTime();
         int numeroDeGanadores = (int) jSpinnerNumeroDeGanadores.getValue();
@@ -241,26 +242,28 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
             try {
                 sistema.agregarSorteo(new Sorteo(premio, numeroDeGanadores, fechaInicio, fechaFin));
                 jLabelError.setText("");
+                jTextAreaDescripcion.setText("");
+                JOptionPane.showMessageDialog(this, "El sorteo fue creado");
             } catch (InvalidDateRangeException ex) {
-                jLabelError.setText("La fecha de inicio debe ser menor o igual a la fecha de finalización");
+                jLabelError.setText("La fecha de inicio debe ser menor a la fecha de finalización");
             }
         } else {
             jLabelError.setText("El premio debe tener una descripción");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         padre.removeAll();
         padre.add(new MenuPrincipal(padre, sistema));
         padre.updateUI();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserComboFin;
     private datechooser.beans.DateChooserCombo dateChooserComboInicio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

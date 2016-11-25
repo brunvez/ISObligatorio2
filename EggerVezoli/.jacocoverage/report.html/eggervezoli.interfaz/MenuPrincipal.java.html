@@ -13,56 +13,139 @@ public class MenuPrincipal extends javax.swing.JPanel {
     private Sistema sistema;
     private JPanel contenedor;
 
-<span class="nc" id="L16">    public MenuPrincipal(JPanel padre, Sistema sis) {</span>
+<span class="nc" id="L16">    public MenuPrincipal(JPanel padre, Sistema sistema) {</span>
 <span class="nc" id="L17">        initComponents();</span>
 <span class="nc" id="L18">        this.sistema = sistema;</span>
 <span class="nc" id="L19">        this.contenedor = padre;</span>
-<span class="nc" id="L20">    }</span>
+<span class="nc" id="L20">        this.labelNombre.setText(sistema.getRestaurante().getNombre());</span>
+<span class="nc" id="L21">    }</span>
 
     @SuppressWarnings(&quot;unchecked&quot;)
     // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<span class="nc" id="L26">        jButton1 = new javax.swing.JButton();</span>
-<span class="nc" id="L27">        jButton2 = new javax.swing.JButton();</span>
-<span class="nc" id="L28">        jButton3 = new javax.swing.JButton();</span>
+<span class="nc" id="L27">        botonModificarRestaurante = new javax.swing.JButton();</span>
+<span class="nc" id="L28">        botonAgregarSorteo = new javax.swing.JButton();</span>
+<span class="nc" id="L29">        botonEvaluarRestaurante = new javax.swing.JButton();</span>
+<span class="nc" id="L30">        botonRealizarSorteo = new javax.swing.JButton();</span>
+<span class="nc" id="L31">        labelNombre = new javax.swing.JLabel();</span>
+<span class="nc" id="L32">        fondo = new javax.swing.JLabel();</span>
 
-<span class="nc" id="L30">        jButton1.setText(&quot;jButton1&quot;);</span>
+<span class="nc" id="L34">        setMaximumSize(new java.awt.Dimension(800, 600));</span>
+<span class="nc" id="L35">        setMinimumSize(new java.awt.Dimension(800, 600));</span>
+<span class="nc" id="L36">        setPreferredSize(new java.awt.Dimension(800, 600));</span>
+<span class="nc" id="L37">        setLayout(null);</span>
 
-<span class="nc" id="L32">        jButton2.setText(&quot;jButton2&quot;);</span>
+<span class="nc" id="L39">        botonModificarRestaurante.setBackground(new java.awt.Color(0, 153, 153));</span>
+<span class="nc" id="L40">        botonModificarRestaurante.setFont(new java.awt.Font(&quot;MS PGothic&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L41">        botonModificarRestaurante.setForeground(new java.awt.Color(0, 102, 102));</span>
+<span class="nc" id="L42">        botonModificarRestaurante.setText(&quot;Modificar Restaurante&quot;);</span>
+<span class="nc" id="L43">        botonModificarRestaurante.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L45">                botonModificarRestauranteMouseClicked(evt);</span>
+<span class="nc" id="L46">            }</span>
+        });
+<span class="nc" id="L48">        botonModificarRestaurante.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L50">                botonModificarRestauranteActionPerformed(evt);</span>
+<span class="nc" id="L51">            }</span>
+        });
+<span class="nc" id="L53">        add(botonModificarRestaurante);</span>
+<span class="nc" id="L54">        botonModificarRestaurante.setBounds(10, 10, 210, 60);</span>
 
-<span class="nc" id="L34">        jButton3.setText(&quot;jButton3&quot;);</span>
+<span class="nc" id="L56">        botonAgregarSorteo.setBackground(new java.awt.Color(0, 153, 153));</span>
+<span class="nc" id="L57">        botonAgregarSorteo.setFont(new java.awt.Font(&quot;MS PGothic&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L58">        botonAgregarSorteo.setForeground(new java.awt.Color(0, 102, 102));</span>
+<span class="nc" id="L59">        botonAgregarSorteo.setText(&quot;Agregar Sorteo&quot;);</span>
+<span class="nc" id="L60">        botonAgregarSorteo.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L62">                botonAgregarSorteoMouseClicked(evt);</span>
+<span class="nc" id="L63">            }</span>
+        });
+<span class="nc" id="L65">        add(botonAgregarSorteo);</span>
+<span class="nc" id="L66">        botonAgregarSorteo.setBounds(420, 10, 190, 60);</span>
 
-<span class="nc" id="L36">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);</span>
-<span class="nc" id="L37">        this.setLayout(layout);</span>
-<span class="nc" id="L38">        layout.setHorizontalGroup(</span>
-<span class="nc" id="L39">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L40">            .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L41">                .addGap(148, 148, 148)</span>
-<span class="nc" id="L42">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
-<span class="nc" id="L43">                    .addComponent(jButton3)</span>
-<span class="nc" id="L44">                    .addComponent(jButton2)</span>
-<span class="nc" id="L45">                    .addComponent(jButton1))</span>
-<span class="nc" id="L46">                .addContainerGap(173, Short.MAX_VALUE))</span>
-        );
-<span class="nc" id="L48">        layout.setVerticalGroup(</span>
-<span class="nc" id="L49">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L50">            .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L51">                .addGap(27, 27, 27)</span>
-<span class="nc" id="L52">                .addComponent(jButton1)</span>
-<span class="nc" id="L53">                .addGap(50, 50, 50)</span>
-<span class="nc" id="L54">                .addComponent(jButton2)</span>
-<span class="nc" id="L55">                .addGap(44, 44, 44)</span>
-<span class="nc" id="L56">                .addComponent(jButton3)</span>
-<span class="nc" id="L57">                .addContainerGap(104, Short.MAX_VALUE))</span>
-        );
-<span class="nc" id="L59">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+<span class="nc" id="L68">        botonEvaluarRestaurante.setBackground(new java.awt.Color(0, 102, 102));</span>
+<span class="nc" id="L69">        botonEvaluarRestaurante.setFont(new java.awt.Font(&quot;MS PGothic&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L70">        botonEvaluarRestaurante.setForeground(new java.awt.Color(0, 102, 102));</span>
+<span class="nc" id="L71">        botonEvaluarRestaurante.setText(&quot;Evaluar Restaurante&quot;);</span>
+<span class="nc" id="L72">        botonEvaluarRestaurante.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L74">                botonEvaluarRestauranteMouseClicked(evt);</span>
+<span class="nc" id="L75">            }</span>
+        });
+<span class="nc" id="L77">        add(botonEvaluarRestaurante);</span>
+<span class="nc" id="L78">        botonEvaluarRestaurante.setBounds(220, 10, 200, 60);</span>
+
+<span class="nc" id="L80">        botonRealizarSorteo.setBackground(new java.awt.Color(0, 102, 102));</span>
+<span class="nc" id="L81">        botonRealizarSorteo.setFont(new java.awt.Font(&quot;MS PGothic&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L82">        botonRealizarSorteo.setForeground(new java.awt.Color(0, 102, 102));</span>
+<span class="nc" id="L83">        botonRealizarSorteo.setText(&quot;Realizar Sorteo&quot;);</span>
+<span class="nc" id="L84">        botonRealizarSorteo.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L86">                botonRealizarSorteoMouseClicked(evt);</span>
+<span class="nc" id="L87">            }</span>
+        });
+<span class="nc" id="L89">        botonRealizarSorteo.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L91">                botonRealizarSorteoActionPerformed(evt);</span>
+<span class="nc" id="L92">            }</span>
+        });
+<span class="nc" id="L94">        add(botonRealizarSorteo);</span>
+<span class="nc" id="L95">        botonRealizarSorteo.setBounds(610, 10, 190, 60);</span>
+
+<span class="nc" id="L97">        labelNombre.setFont(new java.awt.Font(&quot;MS Gothic&quot;, 0, 48)); // NOI18N</span>
+<span class="nc" id="L98">        labelNombre.setForeground(new java.awt.Color(226, 210, 195));</span>
+<span class="nc" id="L99">        labelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);</span>
+<span class="nc" id="L100">        labelNombre.setText(&quot;RESTAURANT&quot;);</span>
+<span class="nc" id="L101">        add(labelNombre);</span>
+<span class="nc" id="L102">        labelNombre.setBounds(-40, 70, 840, 530);</span>
+
+<span class="nc" id="L104">        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/eggervezoli/interfaz/FondoMenuPrincipal.PNG&quot;))); // NOI18N</span>
+<span class="nc" id="L105">        add(fondo);</span>
+<span class="nc" id="L106">        fondo.setBounds(0, 0, 890, 670);</span>
+<span class="nc" id="L107">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    private void botonModificarRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarRestauranteActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L111">    }//GEN-LAST:event_botonModificarRestauranteActionPerformed</span>
+
+    private void botonModificarRestauranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonModificarRestauranteMouseClicked
+<span class="nc" id="L114">        contenedor.removeAll();</span>
+<span class="nc" id="L115">        contenedor.add(new ModificarRestaurant(contenedor, sistema));</span>
+<span class="nc" id="L116">        contenedor.updateUI();</span>
+<span class="nc" id="L117">    }//GEN-LAST:event_botonModificarRestauranteMouseClicked</span>
+
+    private void botonEvaluarRestauranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEvaluarRestauranteMouseClicked
+<span class="nc" id="L120">        contenedor.removeAll();</span>
+<span class="nc" id="L121">        contenedor.add(new EvaluarRestaurante(contenedor, sistema));</span>
+<span class="nc" id="L122">        contenedor.updateUI();</span>
+<span class="nc" id="L123">    }//GEN-LAST:event_botonEvaluarRestauranteMouseClicked</span>
+
+    private void botonAgregarSorteoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarSorteoMouseClicked
+<span class="nc" id="L126">        contenedor.removeAll();</span>
+<span class="nc" id="L127">        contenedor.add(new AgregarSorteo(contenedor, sistema));</span>
+<span class="nc" id="L128">        contenedor.updateUI();</span>
+<span class="nc" id="L129">    }//GEN-LAST:event_botonAgregarSorteoMouseClicked</span>
+
+    private void botonRealizarSorteoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRealizarSorteoMouseClicked
+<span class="nc" id="L132">        contenedor.removeAll();</span>
+<span class="nc" id="L133">        contenedor.add(new RealizarSorteo(contenedor, sistema));</span>
+<span class="nc" id="L134">        contenedor.updateUI();</span>
+<span class="nc" id="L135">    }//GEN-LAST:event_botonRealizarSorteoMouseClicked</span>
+
+    private void botonRealizarSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRealizarSorteoActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L139">    }//GEN-LAST:event_botonRealizarSorteoActionPerformed</span>
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton botonAgregarSorteo;
+    private javax.swing.JButton botonEvaluarRestaurante;
+    private javax.swing.JButton botonModificarRestaurante;
+    private javax.swing.JButton botonRealizarSorteo;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel labelNombre;
     // End of variables declaration//GEN-END:variables
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
